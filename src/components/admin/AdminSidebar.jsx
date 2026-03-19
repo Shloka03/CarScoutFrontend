@@ -7,7 +7,7 @@ export const AdminSidebar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     localStorage.removeItem("role");
     navigate("/login");
   };
@@ -49,7 +49,7 @@ export const AdminSidebar = () => {
 
           <li>
             <Link
-              to="/admin/manage-users"
+              to="/admin/manageusers"
               className="block hover:text-blue-400"
             >
               👤 {isOpen && "Manage Users"}
@@ -58,7 +58,7 @@ export const AdminSidebar = () => {
 
           <li>
             <Link
-              to="/admin/manage-sellers"
+              to="/admin/managesellers"
               className="block hover:text-blue-400"
             >
               🏢 {isOpen && "Manage Sellers"}
@@ -67,7 +67,7 @@ export const AdminSidebar = () => {
 
           <li>
             <Link
-              to="/admin/manage-listings"
+              to="/admin/managelistings"
               className="block hover:text-blue-400"
             >
               🚗 {isOpen && "Car Listings"}

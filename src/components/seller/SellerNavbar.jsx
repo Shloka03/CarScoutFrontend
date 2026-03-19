@@ -7,9 +7,9 @@ export const SellerNavbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     localStorage.removeItem("role");
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -33,13 +33,13 @@ export const SellerNavbar = () => {
             </li>
 
             <li>
-              <Link to="/seller/add-car" className="hover:text-blue-500">
+              <Link to="/seller/addcar" className="hover:text-blue-500">
                 Add Car
               </Link>
             </li>
 
             <li>
-              <Link to="/seller/my-listings" className="hover:text-blue-500">
+              <Link to="/seller/listings" className="hover:text-blue-500">
                 My Listings
               </Link>
             </li>
@@ -51,7 +51,7 @@ export const SellerNavbar = () => {
             </li>
 
             <li>
-              <Link to="/seller/test-drives" className="hover:text-blue-500">
+              <Link to="/seller/testdrive" className="hover:text-blue-500">
                 Test Drives
               </Link>
             </li>
@@ -98,11 +98,11 @@ export const SellerNavbar = () => {
             </li>
 
             <li>
-              <Link to="/seller/add-car">Add Car</Link>
+              <Link to="/seller/addcar">Add Car</Link>
             </li>
 
             <li>
-              <Link to="/seller/my-listings">My Listings</Link>
+              <Link to="/seller/listings">My Listings</Link>
             </li>
 
             <li>
@@ -110,7 +110,7 @@ export const SellerNavbar = () => {
             </li>
 
             <li>
-              <Link to="/seller/test-drives">Test Drives</Link>
+              <Link to="/seller/testdrive">Test Drives</Link>
             </li>
 
             <li>

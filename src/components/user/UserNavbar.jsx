@@ -7,7 +7,7 @@ export const UserNavbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     localStorage.removeItem("role");
     navigate("/login");
   };
@@ -33,13 +33,13 @@ export const UserNavbar = () => {
             </li>
 
             <li>
-              <Link to="/user/browse-cars" className="hover:text-blue-500">
+              <Link to="/user/browsecars" className="hover:text-blue-500">
                 Browse Cars
               </Link>
             </li>
 
             <li>
-              <Link to="/user/saved-cars" className="hover:text-blue-500">
+              <Link to="/user/savedcars" className="hover:text-blue-500">
                 Saved Cars
               </Link>
             </li>
@@ -51,7 +51,7 @@ export const UserNavbar = () => {
             </li>
 
             <li>
-              <Link to="/user/test-drives" className="hover:text-blue-500">
+              <Link to="/user/testdrive" className="hover:text-blue-500">
                 Test Drives
               </Link>
             </li>
@@ -62,11 +62,7 @@ export const UserNavbar = () => {
               </Link>
             </li>
 
-             <li>
-              <Link to="/user/getapidemo" className="hover:text-blue-500">
-                GETAPIDEMO
-              </Link>
-            </li>
+             
 
             <li>
               <Link to="/user/profile" className="hover:text-blue-500">
@@ -104,11 +100,11 @@ export const UserNavbar = () => {
             </li>
 
             <li>
-              <Link to="/user/browse-cars">Browse Cars</Link>
+              <Link to="/user/browsecars">Browse Cars</Link>
             </li>
 
             <li>
-              <Link to="/user/saved-cars">Saved Cars</Link>
+              <Link to="/user/savedcars">Saved Cars</Link>
             </li>
 
             <li>
@@ -116,7 +112,7 @@ export const UserNavbar = () => {
             </li>
 
             <li>
-              <Link to="/user/test-drives">Test Drives</Link>
+              <Link to="/user/testdrive">Test Drives</Link>
             </li>
 
             <li>

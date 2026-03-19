@@ -1,46 +1,51 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Home } from "../pages/HomePage";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import { UserNavbar } from "../components/user/UserNavbar";
 import { AdminSidebar } from "../components/admin/AdminSidebar";
-import { CarList } from "../components/user/CarList";
-import { CarDetail } from "../components/user/CarDetail";
-import { AllUserList } from "../components/admin/AllUserList";
-import { GetApiDemo } from "../components/user/GetApiDemo";
-import { UseEffectDemo } from "../components/user/UseEffectDemo";
-import LoginT from "../components/LoginT";
-import { ManageUsers } from "../components/admin/ManageUsers";
+
+import { ProtectedRoute } from "./ProtectedRoutes";
+
+
 import { SellerNavbar } from "../components/seller/SellerNavbar";
-import { Dashboard } from "../components/seller/Dashboard";
+import UserDashboard from "../pages/users/UserDashboard";
+import AdminDashboard from "../pages/admin/AdminDashboard";
+import SellerDashboard from "../pages/seller/SellerDashboard";
+import TestDrive from "../pages/users/TestDrive";
+import BrowseCars from "../pages/users/BrowseCars";
+import ManageUsers from "../pages/admin/ManageUsers";
+import AddCar from "../pages/seller/AddCar";
+
 
 const router  = createBrowserRouter([
-    {path:"/",element:<Login/>},
-    {path:"/logint",element:<LoginT/>},
+    { path: "/", element: <Home /> },
+    {path:"/login",element:<Login/>},
     {path:"/signup",element:<Signup/>},
     {
-        path:"/user",element:<UserNavbar/>,
+        path:"/user",element:<ProtectedRoute role="user"><UserNavbar/></ProtectedRoute>,
         children:[
-            {path:"carlist",element:<CarList/>},
-            {path:"cardetail",element:<CarDetail/>},
-            {path:"getapidemo",element:<GetApiDemo/>},
-            {path:"useeffectdemo",element:<UseEffectDemo/>}
+            {path:"dashboard",element: <UserDashboard />},
+            {path:"testdrive",element: <TestDrive />},
+            {path:"browsecars",element: <BrowseCars />},
+        ]
+        
+    },
+    {
+        path:"/admin",element:<ProtectedRoute role="admin"><AdminSidebar/></ProtectedRoute>,
+        children:[
+            {path:"dashboard",element: <AdminDashboard/>},
+            {path:"manageusers",element: <ManageUsers />},
+            
         ]
     },
     {
-        path:"/admin",element:<AdminSidebar/>,
+        path:"/seller",element:<ProtectedRoute role="seller"><SellerNavbar/></ProtectedRoute>,
         children:[
-            {path:"alluserlist",element:<AllUserList/>},
-            {path:"manage-users",element:<ManageUsers/>}
-
+            {path:"dashboard",element: <SellerDashboard />},
+            {path:"addcar",element: <AddCar />},
         ]
-    },
-    {
-        path:"/seller",element:<SellerNavbar/>,
-        children:[
-            {
-                path:"dashboard",element:<Dashboard/>
-            }
-        ]
+        
 
     }
 

@@ -25,7 +25,7 @@ export default function Signup() {
       const res = await axios.post("/user/register",data)
       if(res.status==201){
         toast.success("user registered successfully")
-        navigate("/")
+        navigate("/login")
       }
 
     }
@@ -122,7 +122,7 @@ export default function Signup() {
 
           <p className="text-sm text-center mt-6 text-gray-300">
             Already have an account?{" "}
-            <Link to="/" className="text-blue-400 hover:underline">
+            <Link to="/login" className="text-blue-400 hover:underline">
               Login
             </Link>
           </p>

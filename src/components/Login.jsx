@@ -21,10 +21,14 @@ export default function Login() {
 
       // API Call
       const res = await axios.post("/user/login",data)
+      //localStorage.setItem("user", JSON.stringify(res.data.data))
+      //localStorage.setItem("role", res.data.role)
   
 
       console.log("Response:", res);
       console.log("Response Data:", res.data);
+      localStorage.setItem("token",res.data.token)
+      localStorage.setItem("role",res.data.role)
 
       if (res.status == 200) {
 
@@ -35,30 +39,16 @@ export default function Login() {
         else if(res.data.role == "admin" || res.data.role=="ADMIN"){
           navigate("/admin")
         }
+        else if(res.data.role == "seller" || res.data.role=="SELLER"){
+          navigate("/seller")
+        }
         else{
           toast.error("invalid role")
           navigate("/")
         }
 
-        // Example expected response:
-        // res.data = { token, user: { role: "buyer" } }
-
-        //const role = res.data.user.role;
-
-        // Store token (optional but recommended)
-        //localStorage.setItem("token", res.data.token);
-        //localStorage.setItem("role", role);
-
-        // Role-based navigation
-        {/*if (role === "buyer") {
-          navigate("/buyer/dashboard");
-        } else if (role === "seller") {
-          navigate("/seller/dashboard");
-        } else if (role === "admin") {
-          navigate("/admin/dashboard");
-        } else {
-          navigate("/");
-        }*/}
+        
+       
       }
 
     } catch (err) {
