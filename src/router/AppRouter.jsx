@@ -13,21 +13,29 @@ import UserDashboard from "../pages/users/UserDashboard";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import SellerDashboard from "../pages/seller/SellerDashboard";
 import TestDrive from "../pages/users/TestDrive";
-import BrowseCars from "../pages/users/BrowseCars";
+
 import ManageUsers from "../pages/admin/ManageUsers";
 import AddCar from "../pages/seller/AddCar";
-
+import BrowseCars from "../pages/BrowseCars";
+import CarsDetail from "../pages/CarsDetail";
+import Transactions from "../pages/users/Transactions";
+import SavedCars from "../pages/users/SavedCars";
 
 const router  = createBrowserRouter([
     { path: "/", element: <Home /> },
     {path:"/login",element:<Login/>},
     {path:"/signup",element:<Signup/>},
+    {path:"/browsecars",element:<BrowseCars/>},
+    {path:"/car/:id",element:<CarsDetail />},
+    
     {
         path:"/user",element:<ProtectedRoute role="user"><UserNavbar/></ProtectedRoute>,
         children:[
             {path:"dashboard",element: <UserDashboard />},
             {path:"testdrive",element: <TestDrive />},
-            {path:"browsecars",element: <BrowseCars />},
+            {path:"transactions",element:<Transactions />},
+            {path:"savedcars",element:<SavedCars />}
+            
         ]
         
     },

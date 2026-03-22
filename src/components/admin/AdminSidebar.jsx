@@ -9,6 +9,7 @@ export const AdminSidebar = () => {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("role");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 

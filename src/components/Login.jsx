@@ -21,7 +21,7 @@ export default function Login() {
 
       // API Call
       const res = await axios.post("/user/login",data)
-      //localStorage.setItem("user", JSON.stringify(res.data.data))
+      //localStorage.setItem("user", JSON.stringify(res.data.user))
       //localStorage.setItem("role", res.data.role)
   
 
@@ -29,7 +29,7 @@ export default function Login() {
       console.log("Response Data:", res.data);
       localStorage.setItem("token",res.data.token)
       localStorage.setItem("role",res.data.role)
-
+      localStorage.setItem("userId", res.data.userId);
       if (res.status == 200) {
 
         toast.success("Login Successful 🚗");

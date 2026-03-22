@@ -1,14 +1,19 @@
 import React, { useState } from "react";
+import logo from "../../assets/logo1.png"
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { FaChevronDown } from "react-icons/fa";
 
 export const SellerNavbar = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const [openDropdown, setOpenDropdown] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("role");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
@@ -18,10 +23,22 @@ export const SellerNavbar = () => {
       <nav className="bg-white shadow-md px-6 py-3 sticky top-0 z-50">
         <div className="flex justify-between items-center">
 
-          {/* LOGO */}
-          <h1 className="text-xl font-bold text-blue-600">
-            Car Scout 🚗 (Seller)
-          </h1>
+          
+
+  {/* LOGO */}
+  <div
+    
+    className="flex items-center gap-2 cursor-pointer"
+  >
+    <img
+      src={logo}
+      alt="Car Scout"
+      className="h-14 hover:scale-105 transition"
+    />
+    <span className="text-sm text-gray-500">(Seller)</span>
+  </div>
+
+  
 
           {/* DESKTOP MENU */}
           <ul className="hidden md:flex gap-6 items-center font-medium">
@@ -61,21 +78,61 @@ export const SellerNavbar = () => {
                 Transactions
               </Link>
             </li>
-
-            <li>
-              <Link to="/seller/profile" className="hover:text-blue-500">
-                Profile
-              </Link>
-            </li>
-
-            <li>
-              <button
-                onClick={handleLogout}
-                className="bg-blue-500 text-white px-4 py-1 rounded-lg hover:bg-blue-600"
+             <li className="relative">
+            
+              {/* BUTTON */}
+              <div
+                onClick={() => setOpenDropdown(!openDropdown)}
+                className="flex items-center gap-2 cursor-pointer"
               >
-                Logout
-              </button>
+                {/* AVATAR */}
+                <img
+              src={
+                user?.profileImage
+                  ? user.profileImage
+                  : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+              }
+              alt="avatar"
+              className="w-9 h-9 rounded-full object-cover border-2 border-gray-200 hover:scale-105 transition"
+            />
+            
+               
+            
+                <FaChevronDown className="text-sm" />
+              </div>
+            
+              {/* DROPDOWN MENU */}
+              {openDropdown && (
+                <div className="absolute right-0 mt-3 w-48 bg-white border rounded-lg shadow-lg z-50">
+            
+                  {/* USER INFO */}
+                  <div className="px-4 py-3 border-b">
+                    <p className="font-semibold">{user?.fullName}</p>
+                    <p className="text-sm text-gray-500">{user?.email}</p>
+                  </div>
+            
+                  {/* PROFILE */}
+                  <Link
+                    to="/seller/profile"
+                    className="block px-4 py-2 hover:bg-gray-100"
+                  >
+                    Profile
+                  </Link>
+            
+                  {/* LOGOUT */}
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100 text-red-500"
+                  >
+                    Logout
+                  </button>
+            
+                </div>
+              )}
+            
             </li>
+
+            
 
           </ul>
 
