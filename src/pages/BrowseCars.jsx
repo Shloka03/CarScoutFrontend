@@ -201,7 +201,7 @@ export default function BrowseCars() {
         <div className="mb-6 flex gap-3">
           <input
             type="text"
-            placeholder="Search Hyundai Creta, BMW..."
+            placeholder="Search the cars.."
             className="flex-1 p-3 border rounded-lg"
             value={search}
             onChange={(e) => setSearch(e.target.value)}

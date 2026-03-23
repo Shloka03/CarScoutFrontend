@@ -40,11 +40,11 @@ export const UserNavbar = () => {
               </Link>
             </li>
 
-            <li>
+            {/*<li>
               <Link to="/browsecars" className="hover:text-blue-500">
                 Browse Cars
               </Link>
-            </li>
+            </li>*/}
 
             <li>
               <Link to="/user/savedcars" className="hover:text-blue-500">
@@ -146,9 +146,9 @@ export const UserNavbar = () => {
               <Link to="/user/dashboard">Dashboard</Link>
             </li>
 
-            <li>
+            {/*<li>
               <Link to="/user/browsecars">Browse Cars</Link>
-            </li>
+            </li>*/}
 
             <li>
               <Link to="/user/savedcars">Saved Cars</Link>
