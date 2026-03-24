@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import API from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { formatIndianPrice,formatCompactPrice } from "../../utils/priceFormatter";
 
 export default function MyListings() {
 
@@ -77,6 +78,7 @@ export default function MyListings() {
             {listings.map((item) => {
 
               const car = item.carId;
+              const onRoadPrice = Math.round(car.price * 1.1); // ✅ important
 
               return (
                 <div
@@ -96,9 +98,21 @@ export default function MyListings() {
                     {car.brand} {car.model}
                   </h2>
 
-                  <p className="text-blue-600 font-bold text-lg">
-                    ₹ {car.price}
-                  </p>
+                  {/* ✅ ON-ROAD PRICE */}
+                  <p className="text-blue-400 font-bold">
+                                              {formatCompactPrice(onRoadPrice)}
+                                            </p>
+                                    
+                                            {/* ✅ EXTRA UX */}
+                                            <p className="text-xs text-green-400">
+                                              On-road (incl. RTO + Insurance)
+                                            </p>
+                                    
+                                            {/* ✅ EX-SHOWROOM */}
+                                            <p className="text-sm text-gray-400">
+                                              Ex-showroom: ₹ {formatIndianPrice(car.price)}
+                                            </p>
+                                            
 
                   <p className="text-sm text-gray-500">
                     {car.fuelType} • {car.transmission}

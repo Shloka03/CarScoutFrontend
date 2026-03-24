@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import { formatIndianPrice,formatCompactPrice } from "../../utils/priceFormatter";
 
 export default function UserDashboard() {
 
@@ -24,6 +25,7 @@ export default function UserDashboard() {
   useEffect(() => {
     fetchData();
   }, []);
+  
 
  return (
   <div className="min-h-screen bg-[#0f172a] text-white">
@@ -108,46 +110,60 @@ export default function UserDashboard() {
 
       <div className="grid md:grid-cols-3 gap-6">
 
-        {cars.slice(0, 6).map((car) => (
+        {cars.slice(0, 6).map((car) => {
 
-          <div
-            key={car._id}
-            onClick={() => navigate(`/car/${car._id}`)}
-            className="group bg-gray-900 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition"
-          >
+  const onRoadPrice = Math.round(car.price * 1.1); // ✅ important
 
-            {/* IMAGE */}
-            <div className="overflow-hidden">
-              <img
-                src={
-                  car.media?.[0]?.mediaUrl ||
-                  "https://via.placeholder.com/300"
-                }
-                className="h-48 w-full object-cover group-hover:scale-110 transition duration-500"
-                alt="car"
-              />
-            </div>
+  return (
+    <div
+      key={car._id}
+      onClick={() => navigate(`/car/${car._id}`)}
+      className="group bg-gray-900 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition"
+    >
 
-            {/* DETAILS */}
-            <div className="p-4">
+      {/* IMAGE */}
+      <div className="overflow-hidden">
+        <img
+          src={
+            car.media?.[0]?.mediaUrl ||
+            "https://via.placeholder.com/300"
+          }
+          className="h-48 w-full object-cover group-hover:scale-110 transition duration-500"
+          alt="car"
+        />
+      </div>
 
-              <h3 className="font-semibold text-lg">
-                {car.brand} {car.model}
-              </h3>
+      {/* DETAILS */}
+      <div className="p-4">
 
-              <p className="text-blue-400 font-bold">
-                ₹ {car.price}
-              </p>
+        <h3 className="font-semibold text-lg">
+          {car.brand} {car.model}
+        </h3>
 
-              <p className="text-sm text-gray-400">
-                {car.fuelType} • {car.transmission}
-              </p>
+        {/* ✅ ON-ROAD PRICE */}
+        <p className="text-blue-400 font-bold">
+          {formatCompactPrice(onRoadPrice)}
+        </p>
 
-            </div>
+        {/* ✅ EXTRA UX */}
+        <p className="text-xs text-green-400">
+          On-road (incl. RTO + Insurance)
+        </p>
 
-          </div>
+        {/* ✅ EX-SHOWROOM */}
+        <p className="text-sm text-gray-400">
+          Ex-showroom: ₹ {formatIndianPrice(car.price)}
+        </p>
 
-        ))}
+        <p className="text-sm text-gray-400">
+          {car.fuelType} • {car.transmission}
+        </p>
+
+      </div>
+
+    </div>
+  );
+})}
 
       </div>
 

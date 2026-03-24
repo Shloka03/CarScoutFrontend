@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatIndianPrice,formatCompactPrice } from "../../utils/priceFormatter";
 
 export default function SavedCars() {
 
@@ -24,7 +25,10 @@ export default function SavedCars() {
       ) : (
         <div className="grid md:grid-cols-3 gap-6">
 
-          {cars.map((car) => (
+          {cars.map((car) => {
+            const onRoadPrice = Math.round(car.price * 1.1); // ✅ important
+            return(
+
             <div key={car._id} className="bg-white p-4 rounded-xl shadow">
 
               <img
@@ -37,12 +41,28 @@ export default function SavedCars() {
                 {car.brand} {car.model}
               </h2>
 
-              <p className="text-blue-600 font-bold">
-                ₹ {car.price}
-              </p>
+              {/* ✅ ON-ROAD PRICE */}
+                      <p className="text-blue-400 font-bold">
+                        {formatCompactPrice(onRoadPrice)}
+                      </p>
+              
+                      {/* ✅ EXTRA UX */}
+                      <p className="text-xs text-green-400">
+                        On-road (incl. RTO + Insurance)
+                      </p>
+              
+                      {/* ✅ EX-SHOWROOM */}
+                      <p className="text-sm text-gray-400">
+                        Ex-showroom: ₹ {formatIndianPrice(car.price)}
+                      </p>
+                      <p className="text-sm text-gray-400">
+          {car.fuelType} • {car.transmission}
+        </p>
+
 
             </div>
-          ))}
+            );
+})}
 
         </div>
       )}

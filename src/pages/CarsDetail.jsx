@@ -3,6 +3,7 @@ import API from "../api/axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaHeart } from "react-icons/fa";
+import { formatIndianPrice, formatCompactPrice } from "../utils/priceFormatter";
 
 export default function CarsDetail() {
    //format price
@@ -171,13 +172,33 @@ export default function CarsDetail() {
               />
 
             </div>
+            {/* ON-ROAD PRICE (Lakh/Cr) */}
+<p className="text-3xl text-blue-600 font-bold">
+  {formatCompactPrice(onRoadPrice)}
+</p>
+<p className="text-sm text-gray-500">
+  On-Road Price (Approx)
+</p>
+
+{/* EXTRA UX IMPROVEMENT */}
+<p className="text-xs text-green-600 mb-2">
+  Includes RTO + Insurance
+</p>
+
+{/* EX-SHOWROOM PRICE (NUMBER FORMAT) */}
+<p className="text-xl text-gray-700 font-semibold mt-2">
+  ₹ {formatIndianPrice(car.price)}
+</p>
+<p className="text-sm text-gray-500">
+  Ex-Showroom Price
+</p>
 
            
             {/*<p className="text-3xl text-blue-600 font-bold mt-2 mb-4">
               ₹ {car.price}
             </p>*/}
              {/* PRICE */}
-            <p className="text-3xl text-blue-600 font-bold mt-2">
+            {/*<p className="text-3xl text-blue-600 font-bold mt-2">
   ₹ {car.price.toLocaleString("en-IN")}
 </p>
 
@@ -186,13 +207,13 @@ export default function CarsDetail() {
 </p>
 
 {/*on road price */}
-<p className="text-3xl text-blue-600 font-bold mt-2">
+{/*<p className="text-3xl text-blue-600 font-bold mt-2">
   ₹ {onRoadPrice.toLocaleString("en-IN")}
 </p>
 
 <p className="text-sm text-gray-500">
   On-Road Price (Approx)
-</p>
+</p>*/}
             {/* DETAILS */}
             <div className="grid grid-cols-2 gap-3">
 

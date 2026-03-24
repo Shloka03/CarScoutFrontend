@@ -3,6 +3,7 @@ import API from "../api/axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
+import { formatIndianPrice, formatCompactPrice } from "../utils/priceFormatter";
 
 export default function BrowseCars() {
    const [params] = useSearchParams();
@@ -69,6 +70,8 @@ export default function BrowseCars() {
 }, [params]);
 
   if (loading) return <p className="text-center mt-10">Loading cars...</p>;
+  
+  //const onRoadPrice = Math.round(cars.price * 1.1);
 
   return (
     <div className="flex gap-6 bg-gray-100 min-h-screen p-6">
@@ -223,6 +226,7 @@ export default function BrowseCars() {
           <div className="grid md:grid-cols-3 gap-6">
 
             {cars.map((car) => {
+              const onRoadPrice = Math.round(car.price * 1.1);
 
               const sellerId =
                 typeof car.sellerId === "object"
@@ -246,9 +250,21 @@ export default function BrowseCars() {
   {car.brand} {car.model}
 </h2>
 
+                  {/*<p className="text-blue-600 font-bold text-lg">
+                    ₹ {car.price.toLocaleString("en-IN")}
+                  </p>*/}
+
                   <p className="text-blue-600 font-bold text-lg">
-                    ₹ {car.price.toLocalString("en-IN")}
-                  </p>
+  {formatCompactPrice(onRoadPrice)}
+</p>
+
+<p className="text-xs text-green-600">
+  On-road (incl. RTO + Insurance)
+</p>
+
+<p className="text-sm text-gray-500">
+  Ex-showroom: ₹ {formatIndianPrice(car.price)}
+</p>
 
                   <p className="text-sm text-gray-500">
                     {car.fuelType} • {car.transmission}
