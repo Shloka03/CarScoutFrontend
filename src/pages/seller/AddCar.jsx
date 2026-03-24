@@ -19,14 +19,20 @@ export default function AddCar() {
 
       const decoded = jwtDecode(token);
 
-      const payload = {
-        ...data,
-        sellerId: decoded.id
-      };
+const payload = {
+  ...data,
+  sellerId: decoded.id
+};
 
-      await API.post("/cars/add", payload);
+// 🔥 STEP 1: ADD CAR
+const carRes = await API.post("/cars/add", payload);
 
-      toast.success("Car added successfully 🚗");
+// 🔥 STEP 2: CREATE LISTING (THIS IS NEW)
+await API.post("/listings/add", {
+  carId: carRes.data.data._id
+});
+
+toast.success("Car added & listed successfully 🚗");
 
     } catch (err) {
       console.log(err.response?.data);
@@ -81,9 +87,9 @@ export default function AddCar() {
             </tr>
 
             <tr>
-              <td className="font-medium">Distance Driven</td>
+              <td className="font-medium">Mileage</td>
               <td>
-                <input {...register("distanceDriven")} className="w-full border p-2 rounded-lg" />
+                <input {...register("mileage")} className="w-full border p-2 rounded-lg" />
               </td>
 
               <td className="font-medium">Fuel Type</td>

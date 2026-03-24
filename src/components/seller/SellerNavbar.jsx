@@ -56,7 +56,7 @@ export const SellerNavbar = () => {
             </li>
 
             <li>
-              <Link to="/seller/listings" className="hover:text-blue-500">
+              <Link to="/seller/mylistings" className="hover:text-blue-500">
                 My Listings
               </Link>
             </li>

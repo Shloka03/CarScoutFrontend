@@ -247,7 +247,7 @@ export default function BrowseCars() {
 </h2>
 
                   <p className="text-blue-600 font-bold text-lg">
-                    ₹ {car.price}
+                    ₹ {car.price.toLocalString("en-IN")}
                   </p>
 
                   <p className="text-sm text-gray-500">
