@@ -110,7 +110,7 @@ export default function UserDashboard() {
 
       <div className="grid md:grid-cols-3 gap-6">
 
-        {cars.slice(0, 6).map((car) => {
+        {cars.slice(0, 13).map((car) => {
 
   const onRoadPrice = Math.round(car.price * 1.1); // ✅ important
 

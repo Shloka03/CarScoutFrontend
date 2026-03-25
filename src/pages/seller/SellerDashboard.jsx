@@ -90,7 +90,7 @@ export default function SellerDashboard() {
                   {/* IMAGE */}
                   <img
                     src={car.media?.[0]?.mediaUrl || "https://via.placeholder.com/300"}
-                    className="h-40 w-full object-cover rounded-lg"
+                    className="h-40 w-full object-cover rounded-lg "
                     onClick={() => navigate(`/car/${car._id}`)}
                     alt="car"
                   />
