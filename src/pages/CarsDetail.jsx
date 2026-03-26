@@ -36,7 +36,7 @@ export default function CarsDetail() {
   }, []);
 
   // ✅ AUTO SLIDER
-  useEffect(() => {
+  {/*useEffect(() => {
     if (!car?.media?.length) return;
 
     const interval = setInterval(() => {
@@ -46,7 +46,7 @@ export default function CarsDetail() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [car]);
+  }, [car]);*/}
 
   // CHECK WISHLIST
   useEffect(() => {
@@ -189,7 +189,7 @@ export default function CarsDetail() {
 <p className="text-xl text-gray-700 font-semibold mt-2">
   ₹ {formatIndianPrice(car.price)}
 </p>
-<p className="text-sm text-gray-500">
+<p className="text-sm text-gray-700">
   Ex-Showroom Price
 </p>
 
@@ -270,7 +270,7 @@ export default function CarsDetail() {
         {/* DESCRIPTION */}
         <div className="mt-8">
           <h2 className="text-xl font-semibold mb-2">Description</h2>
-          <p className="text-gray-600">
+          <p className="text-gray-800">
             {car.description || "No description available"}
           </p>
         </div>

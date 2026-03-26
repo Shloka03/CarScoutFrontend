@@ -25,35 +25,71 @@ export default function ManageUsers() {
   }, []);
 
   return (
-    <div>
+    
+    <div className="grid md:grid-cols-2 gap-4">
 
-      <h1 className="text-2xl font-bold mb-4">Users</h1>
+  {users.map((user) => (
+    <div
+      key={user._id}
+      className="bg-white p-4 rounded-xl shadow flex justify-between items-center"
+    >
 
-      {users.map((user) => (
-        <div key={user._id} className="flex justify-between p-3 bg-white mb-2">
+      <div>
 
-          <span>
-  {user.email} 
-  {user.accountStatus === "blocked" && (
-    <span className="text-red-500 ml-2">(Blocked)</span>
-  )}
-</span>
+        {/* EMAIL */}
+        <p className="font-semibold">{user.email}</p>
 
-          <button
-  onClick={() => blockUser(user._id)}
-  disabled={user.accountStatus === "blocked"}
-  className={`px-3 py-1 rounded text-white ${
-    user.accountStatus === "blocked"
-      ? "bg-gray-400 cursor-not-allowed"
-      : "bg-red-500 hover:bg-red-600"
-  }`}
->
-  {user.accountStatus === "blocked" ? "Blocked" : "Block"}
-</button>
+        {/* ROLE */}
+        <p className="text-sm mt-1">
+          Role:
+          {user.role === "admin" ? (
+  <span className="bg-purple-100 text-purple-600 px-2 py-1 rounded">
+    Admin
+  </span>
+) : user.role === "seller" ? (
+  <span className="bg-blue-100 text-blue-600 px-2 py-1 rounded">
+    Seller
+  </span>
+) : (
+  <span className="bg-green-100 text-green-600 px-2 py-1 rounded">
+    Buyer
+  </span>
+)}
+        </p>
 
-        </div>
-      ))}
+        {/* STATUS */}
+        <p className="text-sm">
+          Status:
+          {user.accountStatus === "blocked" ? (
+            <span className="ml-2 text-red-500">Blocked</span>
+          ) : (
+            <span className="ml-2 text-green-600">Active</span>
+          )}
+        </p>
+
+      </div>
+
+      {/* BUTTON */}
+      <button
+        onClick={() => blockUser(user._id)}
+        disabled={user.accountStatus === "blocked" || user.role === "admin"}
+        className={`px-4 py-2 rounded text-white ${
+          user.accountStatus === "blocked" || user.role === "admin"
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-red-500 hover:bg-red-600"
+        }`}
+      >
+        {user.role === "admin"
+  ? "Admin"
+  : user.accountStatus === "blocked"
+  ? "Blocked"
+  : "Block"}
+      </button>
 
     </div>
+  ))}
+
+</div>
+
   );
 }

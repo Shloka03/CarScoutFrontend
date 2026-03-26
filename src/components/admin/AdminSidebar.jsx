@@ -84,7 +84,7 @@ export const AdminSidebar = () => {
             </Link>
           </li>
 
-          <li>
+          {/*<li>
             <Link
               to="/admin/negotiations"
               className="block hover:text-blue-400"
@@ -118,7 +118,7 @@ export const AdminSidebar = () => {
             >
               ⚙️ {isOpen && "Settings"}
             </Link>
-          </li>
+          </li>*/}
 
           <li>
             <button

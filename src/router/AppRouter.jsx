@@ -24,6 +24,8 @@ import UserProfile from "../pages/users/UserProfile";
 import SellerProfile from "../pages/seller/SellerProfile";
 import MyListings from "../pages/seller/MyListings";
 import EditCar from "../pages/seller/EditCar";
+import SellerTestDrives from "../pages/seller/SellerTestdrives";
+import ManageSellers from "../pages/admin/ManageSellers";
 
 const router  = createBrowserRouter([
     { path: "/", element: <Home /> },
@@ -50,8 +52,10 @@ const router  = createBrowserRouter([
     {
         path:"/admin",element:<ProtectedRoute role="admin"><AdminSidebar/></ProtectedRoute>,
         children:[
+            {index:"dashboard",element:<AdminDashboard/>},
             {path:"dashboard",element: <AdminDashboard/>},
             {path:"manageusers",element: <ManageUsers />},
+            {path:"managesellers",element:<ManageSellers/>}
             
         ]
     },
@@ -63,7 +67,8 @@ const router  = createBrowserRouter([
             {path:"addcar",element: <AddCar />},
             {path:"profile",element: <SellerProfile/>},
             {path:"mylistings",element:<MyListings/>},
-            {path:"editcar/:id",element:<EditCar/>}
+            {path:"editcar/:id",element:<EditCar/>},
+            {path:"testdrive",element:<SellerTestDrives/>}
         ]
         
 

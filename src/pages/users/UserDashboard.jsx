@@ -12,7 +12,7 @@ export default function UserDashboard() {
   const fetchData = async () => {
     try {
       const carsRes = await API.get("/cars/get");
-      const testDriveRes = await API.get("/testdrive/get");
+      const testDriveRes = await API.get("/testdrive/user");
 
       setCars(carsRes.data.data);
       setTestDrives(testDriveRes.data.data);
@@ -99,6 +99,15 @@ export default function UserDashboard() {
               <p className="text-gray-400">
                 ⏰ {td.testDriveTime}
               </p>
+              <p className={`mt-1 font-semibold ${
+  td.status === "approved"
+    ? "text-green-400"
+    : td.status === "rejected"
+    ? "text-red-400"
+    : "text-yellow-400"
+}`}>
+  Status: {td.status}
+</p>
             </div>
           ))}
 
