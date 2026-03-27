@@ -26,6 +26,8 @@ import MyListings from "../pages/seller/MyListings";
 import EditCar from "../pages/seller/EditCar";
 import SellerTestDrives from "../pages/seller/SellerTestdrives";
 import ManageSellers from "../pages/admin/ManageSellers";
+import { Forgotpassword } from "../components/forgotpassword";
+import ResetPassword from "../components/ResetPassword";
 
 const router  = createBrowserRouter([
     { path: "/", element: <Home /> },
@@ -33,6 +35,9 @@ const router  = createBrowserRouter([
     {path:"/signup",element:<Signup/>},
     {path:"/browsecars",element:<BrowseCars/>},
     {path:"/car/:id",element:<CarsDetail />},
+    { path: "/forgotpassword", element: <Forgotpassword /> },
+    { path: "/resetpassword/:token", element: <ResetPassword /> },
+
     
     {
         path:"/user",element:<ProtectedRoute role="user"><UserNavbar/></ProtectedRoute>,

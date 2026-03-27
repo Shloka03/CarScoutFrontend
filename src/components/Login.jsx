@@ -134,6 +134,12 @@ export default function Login() {
             Sign Up
             </Link>
             </p>
+            {/* ✅ FIXED FORGOT PASSWORD */}
+            <p className="text-right mt-2">
+              <Link to="/forgotpassword" className="text-blue-500 text-sm hover:underline">
+                Forgot Password?
+              </Link>
+            </p>
 
           </form>
 
