@@ -64,7 +64,7 @@ export default function MyListings() {
     >
 
       {/* DARK OVERLAY */}
-      <div className="bg-black/60 min-h-screen p-6 rounded-xl">
+      <div className="bg-black/60 p-6 rounded-xl">
 
         <h1 className="text-3xl font-bold mb-8 text-white">
           My Listings 🚗
@@ -90,7 +90,9 @@ export default function MyListings() {
                   <img
                     src={car.media?.[0]?.mediaUrl || "https://via.placeholder.com/300"}
                     className="h-40 w-full object-cover rounded-lg cursor-pointer"
-                    onClick={() => navigate(`/car/${car._id}`)}
+                    onClick={() =>{
+                      window.scrollTo(0,0);
+                       navigate(`/car/${car._id}`)}}
                   />
 
                   {/* DETAILS */}

@@ -58,7 +58,7 @@ toast.success("Car added & listed successfully 🚗");
           Add New Car 🚗
         </h2>
 
-        <table className="w-full border-separate border-spacing-y-3">
+        {/*<table className="w-full border-separate border-spacing-x-6 border-spacing-y-4">
 
           <tbody>
 
@@ -119,7 +119,68 @@ toast.success("Car added & listed successfully 🚗");
 
           </tbody>
 
-        </table>
+        </table>*/}
+        <div className="grid md:grid-cols-2 gap-6">
+
+  {/* BRAND */}
+  <div>
+    <label className="block font-medium mb-1">Brand</label>
+    <input {...register("brand")} className="w-full border p-3 rounded-lg" />
+  </div>
+
+  {/* MODEL */}
+  <div>
+    <label className="block font-medium mb-1">Model</label>
+    <input {...register("model")} className="w-full border p-3 rounded-lg" />
+  </div>
+
+  {/* YEAR */}
+  <div>
+    <label className="block font-medium mb-1">Year</label>
+    <input {...register("year")} className="w-full border p-3 rounded-lg" />
+  </div>
+
+  {/* PRICE */}
+  <div>
+    <label className="block font-medium mb-1">Price</label>
+    <input {...register("price")} className="w-full border p-3 rounded-lg" />
+  </div>
+
+  {/* MILEAGE */}
+  <div>
+    <label className="block font-medium mb-1">Mileage</label>
+    <input {...register("mileage")} className="w-full border p-3 rounded-lg" />
+  </div>
+
+  {/* FUEL */}
+  <div>
+    <label className="block font-medium mb-1">Fuel Type</label>
+    <input {...register("fuelType")} className="w-full border p-3 rounded-lg" />
+  </div>
+
+  {/* TRANSMISSION */}
+  <div>
+    <label className="block font-medium mb-1">Transmission</label>
+    <input {...register("transmission")} className="w-full border p-3 rounded-lg" />
+  </div>
+
+  {/* COLOR */}
+  <div>
+    <label className="block font-medium mb-1">Color</label>
+    <input {...register("color")} className="w-full border p-3 rounded-lg" />
+  </div>
+
+</div>
+
+{/* DESCRIPTION FULL WIDTH */}
+<div className="mt-6">
+  <label className="block font-medium mb-1">Description</label>
+  <textarea
+    {...register("description")}
+    className="w-full border p-3 rounded-lg"
+    rows="3"
+  />
+</div>
 
         <div className="mt-6 text-center">
           <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">

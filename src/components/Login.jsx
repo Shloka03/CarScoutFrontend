@@ -27,9 +27,10 @@ export default function Login() {
 
       console.log("Response:", res);
       console.log("Response Data:", res.data);
-      localStorage.setItem("token",res.data.token)
-      localStorage.setItem("role",res.data.role)
+      localStorage.setItem("token",res.data.token);
+      localStorage.setItem("role",res.data.role.toLowerCase());
       localStorage.setItem("userId", res.data.userId);
+      //localStorage.setItem("role", user.role);
       if (res.status == 200) {
 
         toast.success("Login Successful 🚗");

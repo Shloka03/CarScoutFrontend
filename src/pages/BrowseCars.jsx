@@ -9,6 +9,19 @@ export default function BrowseCars() {
    const [params] = useSearchParams();
 
   const navigate = useNavigate();
+  const handleCarClick = (carId) => {
+  const role = localStorage.getItem("role");
+
+  if (!role) {
+    navigate(`/car/${carId}`);
+  } else if (role === "user") {
+    navigate(`/user/car/${carId}`);
+  } else if (role === "seller") {
+    navigate(`/seller/car/${carId}`);
+  } else {
+    navigate(`/car/${carId}`);
+  }
+};
  
 
   const [cars, setCars] = useState([]);
@@ -237,14 +250,16 @@ export default function BrowseCars() {
                 <div key={car._id} className="bg-white p-4 rounded-xl shadow">
 
                   <img
-                    onClick={()=>navigate(`/car/${car._id}`)}
+                    //onClick={()=>navigate(`/car/${car._id}`)}
+                    onClick={() => handleCarClick(car._id)}
                     src={car.media?.[0]?.mediaUrl || "https://via.placeholder.com/300"}
                     className="h-44 w-full object-cover rounded-lg cursor-pointer hover:scale-105 transition"
                     alt="car"
                   />
 
                   <h2
-  onClick={() => navigate(`/car/${car._id}`)}
+  //onClick={() => navigate(`/car/${car._id}`)}
+  onClick={() => handleCarClick(car._id)}
   className="text-lg font-semibold mt-3 cursor-pointer hover:text-blue-600"
 >
   {car.brand} {car.model}

@@ -23,17 +23,27 @@ export default function CarsDetail() {
   const fetchCar = async () => {
     try {
       const res = await API.get(`/cars/get/${id}`);
+      console.log("Car ID:", id);
       setCar(res.data.data);
     } catch (err) {
+      console.log("ERROR:",err.response?.data || err);
       toast.error("Failed to load car details");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
+  {/*useEffect(() => {
     fetchCar();
-  }, []);
+  }, []);*/}
+  useEffect(() => {
+  if (!id) return;
+  fetchCar();
+}, [id]);
+   
+   //useEffect(() => {
+  //window.scrollTo(0, 0);
+//}, []);
 
   // ✅ AUTO SLIDER
   {/*useEffect(() => {
@@ -268,12 +278,50 @@ export default function CarsDetail() {
         </div>
 
         {/* DESCRIPTION */}
-        <div className="mt-8">
+        {/*<div className="mt-8">
           <h2 className="text-xl font-semibold mb-2">Description</h2>
           <p className="text-gray-800">
             {car.description || "No description available"}
           </p>
-        </div>
+        </div>*/}
+        <div className="mt-8">
+  <h2 className="text-xl font-semibold mb-4">
+    Specifications
+  </h2>
+
+  {car.description ? (
+    <div className="bg-white rounded-xl p-6 shadow">
+
+      <div className="grid md:grid-cols-2 gap-y-4 gap-x-10">
+
+        {car.description.split("|").map((item, index) => {
+          const [key, value] = item.split(":");
+
+          return (
+            <div
+              key={index}
+              className="flex justify-between items-center pb-2 last:border-none border-b "
+            >
+              {/* LEFT SIDE (LABEL) */}
+              <span className="text-gray-500 flex items-center gap-2">
+                {key}
+              </span>
+
+              {/* RIGHT SIDE (VALUE) */}
+              <span className="font-medium text-gray-800">
+                {value}
+              </span>
+            </div>
+          );
+        })}
+
+      </div>
+
+    </div>
+  ) : (
+    <p>No description available</p>
+  )}
+</div>
 
       </div>
 

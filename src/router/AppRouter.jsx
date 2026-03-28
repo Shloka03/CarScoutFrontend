@@ -28,13 +28,15 @@ import SellerTestDrives from "../pages/seller/SellerTestdrives";
 import ManageSellers from "../pages/admin/ManageSellers";
 import { Forgotpassword } from "../components/forgotpassword";
 import ResetPassword from "../components/ResetPassword";
+import PublicNavbar from "../components/PublicNavbar";
+import DynamicNavbar from "../components/DynamicNavbar";
 
 const router  = createBrowserRouter([
     { path: "/", element: <Home /> },
     {path:"/login",element:<Login/>},
     {path:"/signup",element:<Signup/>},
-    {path:"/browsecars",element:<BrowseCars/>},
-    {path:"/car/:id",element:<CarsDetail />},
+    //{path:"/browsecars",element:<BrowseCars/>},
+    //{path:"/car/:id",element:<CarsDetail />},
     { path: "/forgotpassword", element: <Forgotpassword /> },
     { path: "/resetpassword/:token", element: <ResetPassword /> },
 
@@ -49,6 +51,7 @@ const router  = createBrowserRouter([
             {path:"transactions",element:<Transactions />},
             {path:"savedcars",element:<SavedCars />},
             {path:"profile",element:<UserProfile/>},
+            {path:"car/:id",element:<CarsDetail/>}
             
             
         ]
@@ -73,11 +76,30 @@ const router  = createBrowserRouter([
             {path:"profile",element: <SellerProfile/>},
             {path:"mylistings",element:<MyListings/>},
             {path:"editcar/:id",element:<EditCar/>},
-            {path:"testdrive",element:<SellerTestDrives/>}
+            {path:"testdrive",element:<SellerTestDrives/>},
+            {path:"car/:id",element:<CarsDetail/>}
         ]
         
 
-    }
+    },
+    {
+  path: "/browsecars",
+  element: (
+    <>
+      <DynamicNavbar />
+      <BrowseCars />
+    </>
+  )
+},
+{
+  path: "/car/:id",
+  element: (
+    <>
+      <DynamicNavbar />
+      <CarsDetail />
+    </>
+  )
+}
 
 ])
  const AppRouter =()=>{
